@@ -1,9 +1,70 @@
-import example.pepita
+import resolucion.*
 
-describe "group of tests for pepita" {
+describe "tests del estado de la casa" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "la casa se limpia cuando pasa el dia" {
+    
+    casa.pasarDia()
+    
+    assert.equals(0,casa.suciedad())
   }
 
+  test "la casa se ensucia cuando pasa la noche" {
+    
+    casa.setterTestLimpiar()
+
+    casa.pasarNoche()
+
+    assert.equals(110,casa.suciedad())
+
+  }
+
+  test "todos los miembros de una pandilla hacen quilombo"{
+
+    casa.setterTestLimpiar()
+
+    casa.quilomboPandilla()
+
+    assert.equals(710,casa.suciedad())
+
+  }
+
+
 }
+
+describe "test de cuidadores" {
+
+  test "los cuidadores se cansan cuando limpian la casa"{
+
+    tom.limpiarCasa()
+
+    assert.equals(0, tom.energia())
+
+  }
+
+  test "los cuidadores pueden sacar a alguien mas lento que ellos"{
+
+    assert.equals(true,tom.sacar(garfield))
+
+
+  }
+
+
+}
+
+describe "test de pandilla" {
+
+
+  test "si la pandilla tiene mas de 3 miembros, interrumpe el sueño del cuidador"{
+
+    casa.quilomboPandilla()
+    assert.equals(20,tom.energia())
+
+  }
+
+
+}
+
+
+
+
